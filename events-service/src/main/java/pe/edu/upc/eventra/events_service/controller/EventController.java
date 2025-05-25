@@ -1,13 +1,18 @@
 package pe.edu.upc.eventra.events_service.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import pe.edu.upc.eventra.events_service.model.dtos.BulkUploadReportDTO;
 import pe.edu.upc.eventra.events_service.model.dtos.EventRequest;
 import pe.edu.upc.eventra.events_service.model.dtos.EventResponse;
+import pe.edu.upc.eventra.events_service.service.BulkEventUploadService;
 import pe.edu.upc.eventra.events_service.service.EventService;
 
 import java.util.List;
@@ -20,6 +25,7 @@ import java.util.List;
 public class EventController {
 
     private final EventService eventService;
+    private final BulkEventUploadService bulkEventUploadService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -76,4 +82,14 @@ public class EventController {
     public List<EventResponse> getEventsByUserId(@PathVariable("userId") Long userId) {
         return eventService.getEventsByUserId(userId);
     }
+
+    @PostMapping(value = "/bulk-upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<BulkUploadReportDTO> uploadEvents(
+            @Parameter(description = "Archivo CSV a cargar", required = true)
+            @RequestParam("file") MultipartFile file) {
+
+        BulkUploadReportDTO report = bulkEventUploadService.processCsvFile(file);
+        return ResponseEntity.ok(report);
+    }
+
 }
