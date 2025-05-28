@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 		<groupId>pe.edu.upc.eventra</groupId>
 		<version>1.0.0-SNAPSHOT</version>
-	<artifactId>discovery-server</artifactId>
-	<name>discovery-server</name>
+	<artifactId>eureka-server</artifactId>
+	<name>eureka-server</name>
 	<description>Discovery server (Eureka) for Eventra</description>
 	<properties>
 		<java.version>17</java.version>

@@ -14,7 +14,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        return http
                 .csrf(AbstractHttpConfigurer::disable) // Deshabilita CSRF
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
@@ -28,8 +28,7 @@ public class SecurityConfig {
                                 "/webjars/**").permitAll() // Permitir acceso a Swagger
                         .anyRequest().authenticated() // Requerir autenticación para cualquier otra ruta
                 )
-                .httpBasic(withDefaults()); // Configura autenticación básica
-
-        return http.build();
+                .httpBasic(withDefaults()) // Configura autenticación básica
+                .build();
     }
 }

@@ -7,12 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="discovery-server" />
         <module name="payment-service" />
         <module name="api-gateway" />
         <module name="tickets-service" />
         <module name="user-service" />
         <module name="reservations-service" />
+        <module name="eureka-server" />
         <module name="notification-service" />
         <module name="events-service" />
       </profile>
@@ -24,7 +24,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="" />
-      <module name="discovery-server" options="" />
+      <module name="eureka-server" options="" />
       <module name="events-service" options="" />
       <module name="microservices" options="" />
       <module name="reservations-service" options="" />
