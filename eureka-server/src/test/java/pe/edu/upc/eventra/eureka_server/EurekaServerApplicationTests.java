@@ -1,10 +1,10 @@
-package pe.edu.upc.eventra.discovery_server;
+package pe.edu.upc.eventra.eureka_server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DiscoveryServerApplicationTests {
+class EurekaServerApplicationTests {
 
 	@Test
 	void contextLoads() {

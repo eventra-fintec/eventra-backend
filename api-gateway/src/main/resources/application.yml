@@ -1,0 +1,110 @@
+spring:
+  application:
+    name: api-gateway
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          "[/**]":
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/typeofuser/**
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+        - id: events-service
+          uri: lb://events-service
+          predicates:
+            - Path=/api/categoryevent/**
+        - id: events-service
+          uri: lb://events-service
+          predicates:
+            - Path=/api/events/**
+        - id: tickets-service
+          uri: lb://tickets-service
+          predicates:
+            - Path=/api/tickets/**
+        - id: reservations-service
+          uri: lb://reservations-service
+          predicates:
+            - Path=/api/reservations/**
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/auth/**
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payments/**
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/refunds/**
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/statuses/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_CLIENT:localhost:8761}/eureka
+  instance:
+    instance-id: "${spring.application.name}:${spring.application.instance_id:${random.value}}"
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: info
+    org.springframework.cloud.gateway: debug
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: info
+
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: api-gateway
+        display-name: api-gateway
+      - url: /user-service/v3/api-docs
+        name: user-service
+        display-name: user-service
+      - url: /tickets-service/v3/api-docs
+        name: tickets-service
+        display-name: tickets-service
+      - url: /reservations-service/v3/api-docs
+        name: reservations-service
+        display-name: reservations-service
+      - url: /events-service/v3/api-docs
+        name: events-service
+        display-name: events-service
+      - url: /payment-service/v3/api-docs
+        name: payment-service
+        display-name: payment-service
+      - url: /notification-service/v3/api-docs
+        name: notification-service
+        display-name: notification-service
