@@ -1,18 +1,20 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /
+
 spring:
   application:
     name: tickets-service
 
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost:3306}/arqui?useSSL=true&allowPublicKeyRetrieval=true
-    username: ${MYSQL_USERNAME:root}
-    password: ${MYSQL_PASSWORD:root}
+    url: jdbc:mysql://${DATABASE_HOST:localhost:3306}/eventra?useSSL=true&allowPublicKeyRetrieval=true
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:root}
 
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
     defer-datasource-initialization: true
 
   sql:
@@ -22,11 +24,6 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-
-server:
-  port: 0
-  servlet:
-    context-path: /
 
 eureka:
   client:
@@ -43,7 +40,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: mappings
+        include: health, mappings
 
 springdoc:
   enable-native-support: true

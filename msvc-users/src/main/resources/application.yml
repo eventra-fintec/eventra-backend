@@ -1,0 +1,66 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: msvc-users
+
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost:5432}/${DATABASE_NAME:koyebdb}
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:root}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: false
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_CLIENT:localhost:8761}/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+logging:
+  level:
+    root: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, mappings
+
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+    path: /msvc-users/v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    url: /msvc-users/v3/api-docs
+    config-url: /msvc-users/v3/api-docs/swagger-config
+    urls:
+      - url: /msvc-users/v3/api-docs
+        name: msvc-users
+        display-name: msvc-users
+
+openapi:
+  service:
+    title: msvc-users doc
+    version: 1.0.0
+    url: http://${URL_SERVICE:localhost}:8080

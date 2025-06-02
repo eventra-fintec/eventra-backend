@@ -25,7 +25,7 @@ public class TicketService {
     @Transactional
     public TicketResponse addTicket(TicketRequest ticketRequest) {
         // Validate the eventID by calling the Event service
-        eventClient.getEventById(ticketRequest.getEventID());
+//        EventResponse event = eventClient.getEventById(ticketRequest.getEventID());
 
         Ticket ticket = Ticket.builder()
                 .eventID(ticketRequest.getEventID())

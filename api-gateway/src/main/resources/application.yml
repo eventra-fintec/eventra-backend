@@ -15,20 +15,20 @@ spring:
             allowedMethods: "*"
             allowedHeaders: "*"
       routes:
-        - id: user-service
-          uri: lb://user-service
+        - id: msvc-users
+          uri: lb://msvc-users
           predicates:
             - Path=/api/typeofuser/**
-        - id: user-service
-          uri: lb://user-service
+        - id: msvc-users
+          uri: lb://msvc-users
           predicates:
             - Path=/api/users/**
-        - id: events-service
-          uri: lb://events-service
+        - id: msvc-events
+          uri: lb://msvc-events
           predicates:
             - Path=/api/categoryevent/**
-        - id: events-service
-          uri: lb://events-service
+        - id: msvc-events
+          uri: lb://msvc-events
           predicates:
             - Path=/api/events/**
         - id: tickets-service
@@ -39,8 +39,8 @@ spring:
           uri: lb://reservations-service
           predicates:
             - Path=/api/reservations/**
-        - id: user-service
-          uri: lb://user-service
+        - id: msvc-users
+          uri: lb://msvc-users
           predicates:
             - Path=/api/auth/**
         - id: notification-service
@@ -90,18 +90,18 @@ springdoc:
       - url: /v3/api-docs
         name: api-gateway
         display-name: api-gateway
-      - url: /user-service/v3/api-docs
-        name: user-service
-        display-name: user-service
+      - url: /msvc-users/v3/api-docs
+        name: msvc-users
+        display-name: msvc-users
       - url: /tickets-service/v3/api-docs
         name: tickets-service
         display-name: tickets-service
       - url: /reservations-service/v3/api-docs
         name: reservations-service
         display-name: reservations-service
-      - url: /events-service/v3/api-docs
-        name: events-service
-        display-name: events-service
+      - url: /msvc-events/v3/api-docs
+        name: msvc-events
+        display-name: msvc-events
       - url: /payment-service/v3/api-docs
         name: payment-service
         display-name: payment-service

@@ -30,11 +30,12 @@ public class SecurityConfig {
                                 "/swagger-resources/**",
                                 "/webjars/**",
                                 "/tickets-service/v3/api-docs",
-                                "/user-service/v3/api-docs",
-                                "/events-service/v3/api-docs",
+                                "/msvc-users/v3/api-docs",
+                                "/msvc-events/v3/api-docs",
                                 "/reservations-service/v3/api-docs",
                                 "/notification-service/v3/api-docs",
-                                "/payment-service/v3/api-docs"
+                                "/payment-service/v3/api-docs",
+                                "/actuator/**" // <-- Agrega esta línea
                         ).permitAll() // Permitir acceso a Swagger y API docs
                         .anyExchange().authenticated() // Requerir autenticación para cualquier otra ruta
                 ); // Configura autenticación básica

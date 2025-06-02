@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import pe.edu.upc.eventra.reservations_service.model.dtos.EventResponse;
 
-@FeignClient(name = "events-service")
+@FeignClient(name = "msvc-events")
 public interface EventClient {
     @GetMapping("/api/events/{id}")
     EventResponse getEventById(@PathVariable("id") long id);

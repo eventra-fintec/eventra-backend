@@ -3,16 +3,13 @@ spring:
     name: payment-service
 
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost:3306}/arqui?useSSL=true&allowPublicKeyRetrieval=true
-    username: ${MYSQL_USERNAME:root}
-    password: ${MYSQL_PASSWORD:root}
+    url: jdbc:mysql://${DATABASE_HOST:localhost:3306}/eventra?useSSL=true&allowPublicKeyRetrieval=true
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:root}
 
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
     defer-datasource-initialization: true
 
   sql:
@@ -45,7 +42,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: mappings
+        include: health, mappings
 
 springdoc:
   enable-native-support: true

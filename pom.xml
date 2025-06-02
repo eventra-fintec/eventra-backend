@@ -38,8 +38,8 @@
 	<modules>
 		<module>eureka-server</module>
 		<module>api-gateway</module>
-		<module>user-service</module>
-		<module>events-service</module>
+		<module>msvc-users</module>
+		<module>msvc-events</module>
 		<module>tickets-service</module>
 		<module>notification-service</module>
 		<module>payment-service</module>

@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = "pe.edu.upc.eventra.tickets_service.repository")
 @SpringBootApplication
 public class TicketsServiceApplication {
 
